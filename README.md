@@ -21,8 +21,10 @@ MAX_STORE_COUNT=10 bundle exec ruby app.rb # Port 4567
 
 ### Deploying
 
-That this is not meant for any kind of production use and does not use a
-robust webserver. With that provision:
+This is not meant for any kind of production use and does not ship with
+with a robust webserver. Also, it is in docker but persistence depends
+on the process not being restarted, so any deployment to something like
+kubernetes or Google Run will cause storage to be very short term.
 
 ### Sending requests
 
