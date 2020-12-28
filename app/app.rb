@@ -80,24 +80,18 @@ get "/fetch/search" do
   parts = path.split(".")
   matches = []
   
-  puts "WHAT!"
-
   store.each do |item|
     if parts.length == 1 && item["query"][parts[0]] == target
       matches << item
 
     elsif item["json"]
-      puts "!!!"
       stage = item["json"]
 
       # For each part of the path, dig into the json object
       parts.each do |part|
-        puts "Part: #{ part } Stage: #{ stage.to_json }"
         break if stage.nil? || !stage.is_a?(Hash)
         stage = stage[part]
       end
-
-      puts "Final Stage: #{ stage.to_json } Target: #{ target }"
 
       if stage && stage.to_s == target.to_s
         matches << item
